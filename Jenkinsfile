@@ -9,27 +9,27 @@ pipeline{
 
     stage('Terraform init'){
         steps{
-            sh 'cd terraform/localdeploy; terraform init'
+            sh 'terraform init'
         }
 
     }
 
     stage('Terraform apply'){
         when{
-            environment name: 'Terraform Actions' value:'Apply'
+            environment name: 'Terraform Actions', value:'Apply'
         }
         steps{
-            sh 'cd terraform/localdeploy; terraform apply -auto-approve'
+            sh 'terraform apply -auto-approve'
         }
 
     }
 
     stage('Terraform destroy'){
         when{
-            environment name: 'Terraform Actions' value:'Destroy'
+            environment name: 'Terraform Actions', value:'Destroy'
         }
         steps{
-            sh 'cd terraform/localdeploy; terraform destroy -auto-approve'
+            sh 'terraform destroy -auto-approve'
         }
 
     }
