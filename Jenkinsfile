@@ -7,7 +7,9 @@ pipeline{
         choice(name: 'Terraform Actions', choices: ['Apply','Destroy'], description: 'Pick a teraform action')
     }
 
-    stage('Terraform init'){
+    stages{
+
+        stage('Terraform init'){
         steps{
             sh 'terraform init'
         }
@@ -32,5 +34,6 @@ pipeline{
             sh 'terraform destroy -auto-approve'
         }
 
+    }
     }
 }
